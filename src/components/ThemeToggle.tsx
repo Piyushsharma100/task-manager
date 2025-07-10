@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
  
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>(
@@ -11,8 +14,15 @@ export default function ThemeToggle() {
   }, [theme]);
  
   return (
-    <button onClick={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}>
-      {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-    </button>
+    <FormControlLabel
+      control={
+        <Switch
+          checked={theme === 'dark'}
+          onChange={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}
+          color="default"
+        />
+      }
+      label={theme === 'light' ? 'Dark Theme' : 'Light Theme'}
+    />
   );
 }

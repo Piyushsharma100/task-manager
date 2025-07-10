@@ -1,6 +1,7 @@
 import { memo, useContext } from 'react';
 import type { Task } from '../types/Task';
 import { TaskContext } from '../context/TaskContextValue';
+import DeleteButton from './DeleteButton';
 
  
 const TaskItem = memo(({ task }: { task: Task }) => {
@@ -9,7 +10,7 @@ const TaskItem = memo(({ task }: { task: Task }) => {
   return (
     <div className={`task-item ${task.completed ? 'completed' : ''}`}>
 <span onClick={()=> toggleTask(task.id)}>{task.text}</span>
-<button onClick={()=>deleteTask(task.id)}>❌</button>
+<DeleteButton onClick={() => deleteTask(task.id)} />
     </div>
   );
 });
