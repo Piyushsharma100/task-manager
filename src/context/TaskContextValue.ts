@@ -6,6 +6,7 @@ export interface TaskContextType {
   addTask: (task: string) => void;
   deleteTask: (id: number) => void;
   toggleTask: (id: number) => void;
+  completeAllTasks: () => void;
 }
 
 export const TaskContext = createContext<TaskContextType>({} as TaskContextType);

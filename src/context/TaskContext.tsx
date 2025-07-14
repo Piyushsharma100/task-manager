@@ -21,8 +21,14 @@ setTasks((prev) => prev.filter((task) => task.id !== id));
   const toggleTask = useCallback((id: number) => {
 setTasks((prev) => prev.map((task) => task.id === id ? { ...task, completed: !task.completed } : task));
   }, [setTasks]);
+
+  const completeAllTasks = () => {
+  setTasks((prevTasks) =>
+    prevTasks.map((task) => ({ ...task, completed: true }))
+  );
+};
  
-  const value = useMemo(() => ({ tasks, addTask, deleteTask, toggleTask }), [tasks, addTask, deleteTask, toggleTask]);
+  const value = useMemo(() => ({ tasks, addTask, deleteTask, toggleTask,  completeAllTasks }), [tasks, addTask, deleteTask, toggleTask, completeAllTasks]);
  
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 }

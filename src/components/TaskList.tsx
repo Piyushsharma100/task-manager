@@ -6,10 +6,11 @@ const tabs = [
   { label: 'All', value: 'all' },
   { label: 'Completed', value: 'completed' },
   { label: 'Pending', value: 'pending' },
+
 ];
 
 export default function TaskList() {
-  const { tasks } = useContext(TaskContext);
+  const { tasks, completeAllTasks } = useContext(TaskContext);
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
 
  const [theme, setTheme] = useState(document.body.className);
@@ -24,6 +25,7 @@ export default function TaskList() {
  const filteredTasks = useMemo(() => {
     if (filter === 'completed') return tasks.filter((t) => t.completed);
     if (filter === 'pending') return tasks.filter((t) => !t.completed);
+     
     return tasks;
   }, [tasks, filter]); 
 
@@ -36,6 +38,20 @@ export default function TaskList() {
           marginBottom: '1rem',
         }}
       >
+<button 
+  onClick={completeAllTasks}
+  style={{
+    marginRight: '10px',
+    padding: '8px 12px',
+    background: '#1976d2',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  }}
+>
+Complete all at once
+</button>
         {tabs.map((tab) => (
           <button
             key={tab.value}
